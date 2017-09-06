@@ -1,7 +1,7 @@
 var isCreditCardValid = function(s) {
     var errorMessage = "";
 
-    if (!lengthCheck(e)) {
+    if (!lengthCheck(s)) {
         errorMessage = 'wrong_length'; 
     } else if (!containOnlyNumbersAnd16Digits(s)) {
         errorMessage = 'invalid characters';        
@@ -13,7 +13,7 @@ var isCreditCardValid = function(s) {
         errorMessage = 'sum less than 16';
     }
 
-    if (message === "") {
+    if (errorMessage === "") {
         return { valid: true, number: s };        
     } else {
         return { valid: false, number: s, error: errorMessage };
@@ -21,10 +21,10 @@ var isCreditCardValid = function(s) {
 };
 
 var lengthCheck = function(s) {
-    if (s.length > 20) {
-        return false;
+    if (s.length === 19) {
+        return true;
     }
-    return true;
+    return false;
 }
 
 var containOnlyNumbersAnd16Digits = function(s) {
