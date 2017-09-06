@@ -1,9 +1,31 @@
 var isCreditCardValid = function(s) {
-    return containOnlyNumbersAnd16Digits(s) 
-            && containDifferentDigits(s) 
-            && evenFinalDigit(s) 
-            && sumGreater16(s);
+    var errorMessage = "";
+
+    if (!lengthCheck(e)) {
+        errorMessage = 'wrong_length'; 
+    } else if (!containOnlyNumbersAnd16Digits(s)) {
+        errorMessage = 'invalid characters';        
+    } else if (!containDifferentDigits(s)) {
+        errorMessage = 'only one type of number';        
+    } else if (!evenFinalDigit(s)) {
+        errorMessage = 'odd final number';
+    } else if (!sumGreater16(s)) {
+        errorMessage = 'sum less than 16';
+    }
+
+    if (message === "") {
+        return { valid: true, number: s };        
+    } else {
+        return { valid: false, number: s, error: errorMessage };
+    }
 };
+
+var lengthCheck = function(s) {
+    if (s.length > 20) {
+        return false;
+    }
+    return true;
+}
 
 var containOnlyNumbersAnd16Digits = function(s) {
     if (s.match(/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/) !== null) {
